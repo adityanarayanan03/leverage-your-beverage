@@ -1,1 +1,1 @@
-Leverage Your Beverage!ß
+Leverage Your Beverage!
