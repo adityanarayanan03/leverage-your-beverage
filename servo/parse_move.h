@@ -8,4 +8,9 @@
  */
 void parse_input(int *panAngle, int *tiltAngle);
 
+/**
+ * parse_debug prints Serial input back to serial
+ */
+void parse_debug();
+
 #endif // PARSE_MOVE_H

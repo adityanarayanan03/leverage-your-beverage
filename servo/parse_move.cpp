@@ -39,3 +39,23 @@ void parse_input(int *panAngle, int *tiltAngle) {
     }
 	}
 }
+
+#define DEBUG_BUF_SIZE 20
+char debug_buf[DEBUG_BUF_SIZE];
+/**
+ * parse_debug prints Serial input back to serial
+ */
+void parse_debug() {
+  if (Serial.available() > 0) {
+    int it = Serial.readBytesUntil('\0', data, 19);
+    Serial.print("Message length: "); Serial.println(it);
+    Serial.print("Message: ");
+    for (int i = 0; i < DEBUG_BUF_SIZE; i++) {
+      Serial.print(debug_buf[i]);
+      if (i+1 == DEBUG_BUF_SIZE) {
+        Serial.print("  ERROR: SERIAL INPUT NULL TERMINATOR MISSING");
+      }
+    }
+    Serial.print("\n");
+  }
+}
