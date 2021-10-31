@@ -21,6 +21,7 @@ void heartbeat() {
 void loop() {
 	heartbeat();
   parse_input(&panAngle, &tiltAngle);
+  //parse_debug();
   pan.write(panAngle);
   tilt.write(tiltAngle);
 }

@@ -13,7 +13,7 @@ char data[10];
  * null terminator not needed
  */
 static int threeDigitNum(const char* str) {
-  int output = 100 * (str[0] - '0') + 10 * (str[1] - '0') + (str[2] - '0');
+  int output = 100 * (str[0]) + 10 * (str[1]) + (str[2]);
   if (output < ANGLELOW) output = ANGLELOW;
   if (output > ANGLEHIGH) output = ANGLEHIGH;
   return output;
@@ -28,7 +28,7 @@ void parse_input(int *panAngle, int *tiltAngle) {
 	if (Serial.available() > 0) {
 		int it = Serial.readBytesUntil('\0', data, 9);
     if (DEBUG) {
-		  // Serial.println(it);
+		  Serial.println(it);
     }
 		memcpy(panStr, &data[0], 3 * sizeof(char));
 		memcpy(tiltStr, &data[3], 3 * sizeof(char));
@@ -47,15 +47,15 @@ char debug_buf[DEBUG_BUF_SIZE];
  */
 void parse_debug() {
   if (Serial.available() > 0) {
-    int it = Serial.readBytesUntil('\0', data, 19);
+    int it = Serial.readBytesUntil('\0', debug_buf, 19);
     Serial.print("Message length: "); Serial.println(it);
-    Serial.print("Message: ");
-    for (int i = 0; i < DEBUG_BUF_SIZE; i++) {
+    Serial.print("Message: [");
+    for (int i = 0; (i < DEBUG_BUF_SIZE) && (debug_buf[i] != '\0'); i++) {
       Serial.print(debug_buf[i]);
       if (i+1 == DEBUG_BUF_SIZE) {
         Serial.print("  ERROR: SERIAL INPUT NULL TERMINATOR MISSING");
       }
     }
-    Serial.print("\n");
+    Serial.print("]\n");
   }
 }
