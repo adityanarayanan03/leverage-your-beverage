@@ -1,7 +1,4 @@
-#include <Servo.h>
-
-Servo pan;
-Servo tilt;
+#include 
 
 void setup() {
 	Serial.begin(115200);
@@ -10,13 +7,10 @@ void setup() {
 	pinMode(LED_BUILTIN, OUTPUT);
 }
 
+void heartbeat() {
+    digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN) ^ 0x1);
+}
+
 void loop() {
-	pan.write(60);
-	tilt.write(60);
-	delay(300);
-	digitalWrite(LED_BUILTIN, HIGH);
-	pan.write(120);
-	tilt.write(120);
-	delay(300);
-	digitalWrite(LED_BUILTIN, LOW);
+	heartbeat();
 }
