@@ -1,4 +1,9 @@
-#include 
+#include "config.h"
+#include "parse_move.h"
+#include <Servo.h>
+
+Servo pan;
+Servo tilt;
 
 void setup() {
 	Serial.begin(115200);
@@ -7,10 +12,15 @@ void setup() {
 	pinMode(LED_BUILTIN, OUTPUT);
 }
 
+int panAngle, tiltAngle;
+
 void heartbeat() {
     digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN) ^ 0x1);
 }
 
 void loop() {
 	heartbeat();
+  parse_input(&panAngle, &tiltAngle);
+  pan.write(panAngle);
+  tilt.write(tiltAngle);
 }

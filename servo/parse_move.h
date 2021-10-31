@@ -1,10 +1,6 @@
 #ifndef PARSE_MOVE_H
 #define PARSE_MOVE_H
 
-#include <Servo.h>
-
-static inline int threeDigitNum(const char* str);
-
-void parse();
+void parse_input(int *panAngle, int *tiltAngle);
 
 #endif // PARSE_MOVE_H
