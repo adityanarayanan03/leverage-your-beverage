@@ -13,7 +13,7 @@ char data[10];
  * null terminator not needed
  */
 static int threeDigitNum(const char* str) {
-  int output = 100 * (str[0]) + 10 * (str[1]) + (str[2]);
+  int output = 100 * (str[0] - '0') + 10 * (str[1] - '0') + (str[2] - '0');
   if (output < ANGLELOW) output = ANGLELOW;
   if (output > ANGLEHIGH) output = ANGLEHIGH;
   return output;
@@ -51,7 +51,8 @@ void parse_debug() {
     Serial.print("Message length: "); Serial.println(it);
     Serial.print("Message: [");
     for (int i = 0; (i < DEBUG_BUF_SIZE) && (debug_buf[i] != '\0'); i++) {
-      Serial.print(debug_buf[i]);
+      int curr_char = debug_buf[i];
+      Serial.print(curr_char); Serial.print(" ");
       if (i+1 == DEBUG_BUF_SIZE) {
         Serial.print("  ERROR: SERIAL INPUT NULL TERMINATOR MISSING");
       }
