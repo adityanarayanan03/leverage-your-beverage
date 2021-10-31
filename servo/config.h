@@ -8,3 +8,10 @@
  */
 
 #define DEBUG 1
+
+/**
+ *  ANGLELOW and ANGLEHIGH are the bounds of motion for panning and tilting
+ */
+
+#define ANGLELOW 60
+#define ANGLEHIGH 120

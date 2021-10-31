@@ -14,7 +14,7 @@ char data[10];
  */
 static int threeDigitNum(const char* str) {
   int output = 100 * (str[0] - '0') + 10 * (str[1] - '0') + (str[2] - '0');
-  if (output < 0 || output > 180) output = 90;
+  if (output < ANGLELOW || output > ANGLEHIGH) output = 90;
   return output;
 }
 
